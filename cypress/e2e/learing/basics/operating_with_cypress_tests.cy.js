@@ -1,13 +1,18 @@
-describe('Operating with Cypress"', () => {
-    beforeEach(()=>{
-        cy.visit("https://tredgate.com/pmtool");
-    })
-    it('Login Test', () => {
-        cy.visit("https://tredgate.com/pmtool")
-        cy.get("#username").type("cypress_zima_2024")
-        cy.get("#password").type("Zima2024Cypress")
-        cy.get('.btn').click()
-    });
+// operating_with_cypress_tests.cy.js
+// cypress/e2e/learning/basics
 
+describe("Operating with Cypress", () => {
+    it.only("Login Test", () => {
+//  it.only("Login Test", () => { // používá se pouze pro vývoj 
+    cy.visit("https://tredgate.com/pmtool");
+    cy.get("#username").type("cypress_zima_2024");
+    cy.get("#password").type("Zima2024Cypress");
+    cy.get(".btn").click();
+  });
 
+  // ? it.skip - přeskakuje test při spuštění
+  it.skip("Test failure - element not present", () => {
+    cy.visit("https://tredgate.com/pmtool");
+    cy.get("#username2").type("cypress_zima_2024");
+  });
 });
