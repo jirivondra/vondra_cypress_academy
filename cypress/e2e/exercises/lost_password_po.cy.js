@@ -23,8 +23,8 @@ Send: .btn-info
 
 */
 
-import { LoginPage } from "../../../page-objects/mtool/login_page";
-import { LostPasswordPage } from "../../../page-objects/mtool/lost_password_page";
+import { LoginPage } from "../../../page-objects/pmtool/login_page";
+import { LostPasswordPage } from "../../../page-objects/pmtool/lost_password_page";
 
 
 
