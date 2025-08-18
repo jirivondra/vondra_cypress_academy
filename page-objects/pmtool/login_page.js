@@ -4,7 +4,7 @@ import { LostPasswordPage } from "./lost_password_page.js";
 
 export class LoginPage {
   constructor() {
-    this.url = "https://tredgate.com/pmtool";
+    this.url = "https://tredgate.cogit pm/pmtool";
     this.usernameInput = "#username";
     this.passwordInput = "#password";
     this.loginButton = ".btn";
