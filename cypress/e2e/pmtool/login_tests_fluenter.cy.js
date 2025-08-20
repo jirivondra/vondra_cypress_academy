@@ -1,11 +1,18 @@
-
+// login_tests_fluent.cy.js
+// cypress/e2e/pmtool
 
 import { LoginPage } from "../../../page-objects/pmtool/login_page";
 
+
+
+
 describe("Fluent Login Tests", () => {
+  beforeEach(() => {
+     new LoginPage().openPmtool()
+     cy.log(new LoginPage())
+  });
   it("Login to pmtool using Fluent API test", () => {
     new LoginPage()
-      .openPmtool()
       .typeUsername("cypress_zima_2024")
       .typePassword("Zima2024Cypress")
       .clickLogin()
@@ -18,11 +25,14 @@ describe("Fluent Login Tests", () => {
   });
 
   it("Using transfer object", () => {
-      new LoginPage()
-      .openPmtool()
+    new LoginPage()
       .clickPasswordForgotten()
       .clickSendTransfer()
       .onLostPasswordPage()
       .typeUsername("Testovací");
+  });
+
+  it("Open lost password and get back to login", () => {
+      new LoginPage().clickPasswordForgotten().clickBack();
   });
 });
