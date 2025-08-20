@@ -4,11 +4,12 @@ import { LostPasswordPage } from "./lost_password_page.js";
 
 export class LoginPage {
   constructor() {
-    this.url = "https://tredgate.cogit pm/pmtool";
+    this.url = "https://tredgate.com/pmtool";
     this.usernameInput = "#username";
     this.passwordInput = "#password";
     this.loginButton = ".btn";
     this.passwordForgottenAnchor = "#forget_password";
+    this.pageHeader= "h3.form-title";
   }
 
   openPmtool() {
@@ -41,5 +42,10 @@ export class LoginPage {
   clickPasswordForgotten() {
     cy.get(this.passwordForgottenAnchor).click();
     return new LostPasswordPage();
+  }
+
+  pageHeaderHasText(headerText) {
+    cy.get(this.pageHeader).should("have.text", headerText)
+    return this
   }
 }
