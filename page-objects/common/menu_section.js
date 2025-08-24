@@ -3,6 +3,9 @@ cypress/page-objects/pmtool/common
 menu_section.js
 */
 
+
+
+
 export class MenuSection {
   constructor() {
     this.projectLink = "#Projects";
@@ -10,13 +13,13 @@ export class MenuSection {
   }
 
   clickProjectLink() {
-    const { ProjectsPage } = require("../projects_page.js");
+    const { ProjectsPage } = require("../pmtool/project_page");
     cy.get(this.projectLink).click();
     return new ProjectsPage();
   }
 
   clickDashboard() {
-    const { DashboardPage } = require("../dashboard_page.js");
+    const { DashboardPage } = require("../pmtool/dashboard_page")
     cy.get(this.dashboardLink).click();
     return new DashboardPage()
   }
