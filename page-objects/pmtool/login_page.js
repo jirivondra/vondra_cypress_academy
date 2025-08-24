@@ -43,19 +43,4 @@ export class LoginPage {
     cy.get(this.passwordForgottenAnchor).click();
     return new LostPasswordPage();
   }
-
-  pageHeaderHasText(headerText) {
-    cy.get(this.pageHeader).should("have.text", headerText)
-    return this
-  }
-
-  checkPlaholder(placeholderName){
-    cy.get().should("have.class", "placeholder", placeholderName)
-  }
-
-  checkText(selectElement){
-    cy.get(selectElement).invoke("text").within((text)=>(
-      cy.get().should("have.text", text)
-    ))
-  }
 }
