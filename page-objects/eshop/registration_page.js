@@ -9,13 +9,39 @@ export class Form {
         this.continueButton = '.pull-right > .btn';
     }
 
+    fillFirstname(testData) {
+    cy.get(this.selectorFirstname).type(testData.firstName);
+    return this;
+}
+fillLastname(testData) {
+    cy.get(this.selectorLastname).type(testData.lastName);
+    return this;
+}
+fillEmail(testData) {
+    cy.get(this.selectorEmail).type(testData.email);
+    return this;
+}
+fillTelephone(testData) {
+    cy.get(this.selectorTelephone).type(testData.phone);
+    return this;
+}
+fillPassword(testData) {
+    cy.get(this.selectorPassword).type(testData.password);
+    return this;
+}
+fillConfirmPassword(testData) {
+    cy.get(this.selectorConfirm).type(testData.password);
+    return this;
+}
+
+
     fillFields(testData) {
-        cy.get(this.selectorFirstname).type(testData.firstName);
-        cy.get(this.selectorLastname).type(testData.lastName);
-        cy.get(this.selectorEmail).type(testData.email);
-        cy.get(this.selectorTelephone).type(testData.phone);
-        cy.get(this.selectorPassword).type(testData.password);
-        cy.get(this.selectorConfirm).type(testData.password);
+        this.fillFirstname(testData);
+        this.fillLastname(testData);
+        this.fillEmail(testData);
+        this.fillTelephone(testData);
+        this.fillPassword(testData);
+        this.fillConfirmPassword(testData);
         return this;
     }
 
