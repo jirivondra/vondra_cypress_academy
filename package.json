@@ -23,6 +23,7 @@
     "cypress-xpath": "^2.0.1"
   },
   "dependencies": {
+    "cypress-real-events": "^1.14.0",
     "moment": "^2.30.1"
   }
 }
