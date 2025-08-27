@@ -3,11 +3,11 @@ cypress/page-objects/pmtool/common
 menu_section.js
 */
 
+import { BasePage } from "./base_page";
 
-
-
-export class MenuSection {
-  constructor() {
+export class MenuSection extends BasePage{
+  constructor(path) {
+    super(path);
     this.projectLink = "#Projects";
     this.dashboardLink = "#dashboard";
   }
