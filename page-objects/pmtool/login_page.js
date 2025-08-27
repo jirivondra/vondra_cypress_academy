@@ -43,4 +43,22 @@ export class LoginPage {
     cy.get(this.passwordForgottenAnchor).click();
     return new LostPasswordPage();
   }
+
+checkPlaceholder(selectedElement, placeholderName){
+  cy.get(selectedElement)
+    .invoke('attr', 'placeholder')
+    .should('eq', placeholderName)
+    return this;
+}
+
+checkText(selectElement, expectedText) {
+  cy.get(selectElement).should("have.text", expectedText)
+  return this
+}
+
+visibilityelement(selectElement){
+  cy.get(selectElement).should("be.visible")
+  return this;
+}
+
 }
