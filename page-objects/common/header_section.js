@@ -1,5 +1,3 @@
-
-import { LoginPage } from "../pmtool/login_page";
 import { MenuSection } from "./menu_section";
 
 export class HeaderSection extends MenuSection{
@@ -15,6 +13,7 @@ export class HeaderSection extends MenuSection{
   }
 
   clickLogout() {
+    const { LoginPage } = require("../pmtool/login_page");
     cy.get(this.logoutButton).click();
     return new LoginPage();
   }
