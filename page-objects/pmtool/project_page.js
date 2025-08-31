@@ -1,5 +1,5 @@
 import { HeaderSection } from "../common/header_section";
-import { CreateNewProjectModal } from "./create_new_project_modal";
+import { CreateNewProjectModal } from "./creagit push --set-upstream origin bonus_polyte_new_project_modal";
 
 
 export class ProjectsPage extends HeaderSection {
