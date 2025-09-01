@@ -10,6 +10,7 @@ export class MenuSection extends BasePage{
     super(path);
     this.projectLink = "#Projects";
     this.dashboardLink = "#dashboard";
+    this.usersLink = "#Users a.menu-itemsitems1";
   }
 
   clickProjectLink() {
