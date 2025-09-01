@@ -2,7 +2,7 @@ export class MenuSection {
   constructor() {
     this.projectLink = "#Projects";
     this.dashboardLink = "#dashboard";
-    this.usersLink = "#Users";
+    this.usersLink = "#Users a.menu-itemsitems1";
   }
 
   clickProjectLink() {
