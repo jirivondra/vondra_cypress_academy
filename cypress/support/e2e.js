@@ -17,3 +17,10 @@
 import './commands';
 import 'cypress-xpath';
 import 'cypress-real-events/support';
+
+
+Cypress.Commands.add('clearCacheAll', () => {
+  cy.clearAllCookies();
+  cy.clearAllLocalStorage();
+  cy.clearAllSessionStorage();
+});
