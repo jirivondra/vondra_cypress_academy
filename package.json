@@ -4,7 +4,8 @@
   "description": "This repository is for learning for cypress",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cypress:prod": "cypress open --config-file env/prod.env.config.js",
+    "cypress": "npx cypress open"
   },
   "repository": {
     "type": "git",

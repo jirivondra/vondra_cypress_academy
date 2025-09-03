@@ -1,4 +1,4 @@
-import { DashboardPage } from "./dashboard_page";
+//import { ProjectsTasksPage } from "./projects/projects_tasks_page.js";
 
 export class CreateNewProjectModal {
 
@@ -15,6 +15,6 @@ export class CreateNewProjectModal {
 
     clickSave() {
         cy.get(this.saveButton).click();
-        return new DashboardPage();
+       // return new ProjectsTasksPage()
     }
 }
