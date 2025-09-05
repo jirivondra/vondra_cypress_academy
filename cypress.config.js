@@ -7,6 +7,11 @@ module.exports = defineConfig({
     },
         env: {
       testVar: "Toto je proměnná",
+      pmtool_url: "https://tredgate.com/pmtool",
+      tegb_url: "http://localhost:3001/",
+      eshop_url: "https://tredgate.com/eshop",
+      webtrain_url: "https://tredgate.com/webtrain",
+      automation_test_store_url: "https://automationteststore.com/",
     },
     watchForFileChanges: false,
     defaultCommandTimeout: 10000,
