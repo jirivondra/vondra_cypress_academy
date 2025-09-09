@@ -9,7 +9,8 @@ module.exports = defineConfig({
       testVar: "Toto je proměnná",
     },
     watchForFileChanges: false,
+    chromeWebSecurity: false,
     defaultCommandTimeout: 10000,
   },
-  chromeWebSecurity: false,
+  
 });
