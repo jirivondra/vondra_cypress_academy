@@ -1,14 +1,15 @@
 import { customElement } from "../../cypress/e2e/helpers/custom_element";
 import { DashboardPage } from "./dashboard_page";
 
+
 export class TegBLoginPage {
   constructor() {
-    this.url = "https://localhost:3001";
+    this.url = "http://localhost:3001";
     this.usernameInput = customElement('[data-testid="username"]');
     this.passwordInput = customElement('[data-testid="password"]');
     this.loginButton = customElement('[data-testid="log_in"]');
-    // ! Pokud voláme new TegBloginPage opakovaně, dochází k duplicitnímu nastevení interceptu 
-    cy.intercept("/auth/login/").as("login_api")
+    // ! Pokud voláme new TegBLoginPage opakovaně, dochází k duplicitnímu nastavení interceptu. Pokud to tak v testu máme, můžeme intercept přidat přímo do testu před kroky nebo si udělat svoji vlastní funkcionalitu, která nám bude ověřovat, jestli je již intercept nastavený
+    cy.intercept("/auth/login").as("login_api");
   }
 
   openTegb() {
@@ -28,16 +29,13 @@ export class TegBLoginPage {
 
   clickLogin() {
     this.loginButton.click();
-    cy.wait('@login_api')
-    return new DashboardPage()
-    // TODO: Add return value for Dashboard
+    cy.wait("@login_api");
+    return new DashboardPage();
   }
 
   login(username, password) {
     this.typeUsername(username);
     this.typePassword(password);
-    this.clickLogin();
-    return this.clickLogin()
-    // TODO: Add return value for Dashboard
+    return this.clickLogin();
   }
 }
