@@ -31,9 +31,6 @@ describe("Exercise: sending API", () => {
     username = faker.internet.username();
     password = faker.internet.password();
     email = faker.internet.email();
-    cy.log("Username: " + username);
-    cy.log("Password: " + password);
-    cy.log("Email: " + email);
   });
   it("Register and Login to TEGB", () => {
     cy.request({
