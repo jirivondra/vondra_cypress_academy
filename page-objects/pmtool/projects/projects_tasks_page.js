@@ -7,8 +7,8 @@ export class ProjectsTaskPage extends HeaderSection {
     this.projectInfoButton = customElement(".navbar-header .navbar-brand")
   }
 
-clickProjectInfo() {
-  this.projectInfoButton.click()
-  // ! TODO Add return object
-}
+  clickProjectInfo() {
+    this.projectInfoButton.click();
+    return new ProjectInfoPage();
+  }
 }
