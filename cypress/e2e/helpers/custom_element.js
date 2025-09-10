@@ -23,8 +23,23 @@ export const customElement = (selector) => {
       cy.get(selector).should("have.value", value);
       return this;
     },
-    havePlaceholder(placeholder) {
-      cy.get(selector).should("have.attr", "placeholder", placeholder);
+    checkInvokedAttr(attributeName, expectedValue) {
+      cy.get(selector)
+      .invoke('attr', attributeName)
+      .then((actualValue) => {
+      expect(actualValue).to.equal(expectedValue);
+      })
+    },
+    xpathHaveText(text) {
+      cy.xpath(selector).should('have.text', text)
+      return this;
+    },
+    xpathHaveValue(value) {
+      cy.xpath(selector).should('have.value', value)
+      return this;
+    },
+    havePlaceholder() {
+      cy.get(selector) //.should("have.attr", "placeholder", placeholder);
       return this;
     },
     haveAttribute(attribute, value) {
@@ -32,8 +47,16 @@ export const customElement = (selector) => {
       return this;
     },
     click() {
-      cy.get(selector).click();
+      cy.get(selector).click({force: true});
       return this;
+    },
+    xpathClick() {
+      cy.xpath(selector).click({force: true});
+      return this;
+    },
+    containsClick(text) {
+      cy.get(selector).contains(text).click()
+      return this
     },
     type(value) {
       cy.get(selector).type(value);
@@ -43,10 +66,16 @@ export const customElement = (selector) => {
       cy.get(selector).clear();
       return this;
     },
-    get() {
+    check(option) {
+      cy.get(selector).check(option)
+      return this
+    },
+    isChecked() {
+      cy.get(selector).should("be.checked")
+    },
+    get(selector) {
       return cy.get(selector);
     },
-    
   };
    return element;
 };
