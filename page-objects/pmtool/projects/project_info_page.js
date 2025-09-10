@@ -5,7 +5,8 @@ import { HeaderSection } from "../../common/header_section";
 
 export class projectInfoPage extends HeaderSection {
     constructor(projectId = ""){
-        super()
+        super(`module=items/info&path=21-${projectId}`)
+        
 
     }
 }
