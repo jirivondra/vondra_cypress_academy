@@ -26,7 +26,7 @@ const testData = {
 
 };
 
-describe('', () => {
+describe('Eshop: Registration and shopping cart functionality', () => {
 const shoppingBasket = new ShoppingBasket()
 const homepage = new HomePageEshop()
 const registrationForm  = new RegistrationForm()
@@ -34,7 +34,7 @@ const registeredPage = new RegisteredPage()
     beforeEach(()=>{
        homepage.visit()
     })
-    it('Registered, add item to basket and delate it', () => {
+    it('Should register a new user, add an item to the basket, verify it, and delete it', () => {
     registrationForm.visit()
     registrationForm.fillFrom(testData)
     registeredPage.checkHeadLine(testData.headlineText)
