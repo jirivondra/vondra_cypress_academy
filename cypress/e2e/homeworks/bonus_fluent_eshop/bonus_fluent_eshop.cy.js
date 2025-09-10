@@ -1,5 +1,10 @@
+import { BasePage } from "../../../../page-objects/common/base_page";
 import { ShoppingBasket } from "../../../../page-objects/eshop/basket_page";
 import { fakerCS_CZ as faker } from "@faker-js/faker"
+
+import { RegistrationForm } from "../../../../page-objects/eshop/registration_form_page";
+import { HomePageEshop } from "../../../../page-objects/eshop/homepage";
+import { RegisteredPage } from "../../../../page-objects/eshop/registered_page";
 
 const testData = {
     firstName: faker.person.firstName(),
@@ -15,24 +20,30 @@ const testData = {
     },
     model: 'product 11',
     buttonBasketName: 'View Cart',
+    headlineText: 'Your Account Has Been Created!',
+    alertText: ' Success: You have added ',
+    statusText: 'Your shopping cart is empty!'
+
 };
 
 describe('', () => {
 const shoppingBasket = new ShoppingBasket()
+const homepage = new HomePageEshop()
+const registrationForm  = new RegistrationForm()
+const registeredPage = new RegisteredPage()
     beforeEach(()=>{
-       shoppingBasket.visitHp()
+       homepage.visit()
     })
-    it('Registered, and item to basket and delate it', () => {
+    it('Registered, add item to basket and delate it', () => {
+    registrationForm.visit()
+    registrationForm.fillFrom(testData)
+    registeredPage.checkHeadLine(testData.headlineText)
+    registeredPage.clickLogo()
+    homepage.addToCard()
+    homepage.checkAlert(testData.alertText)
     shoppingBasket.visit()
-    shoppingBasket.fillFrom(testData)
-    shoppingBasket.clickContinue()
-    shoppingBasket.clickLogo()
-    shoppingBasket.addToCard()
-    shoppingBasket.openBasket(testData.buttonBasketName)
-    shoppingBasket.checkUnitPrice(testData.unitPrice)
-    shoppingBasket.checkQuantityValue(testData.quantity.attribute, testData.quantity.value)
-    shoppingBasket.checkTotalPrice(testData.unitPrice)
-    shoppingBasket.checkModel(testData.model)
+    shoppingBasket.checkBasket(testData)
     shoppingBasket.delateItem()
+    shoppingBasket.checkStatus(testData.statusText)
     });
 });

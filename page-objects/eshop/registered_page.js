@@ -3,13 +3,21 @@ import { HomePageEshop } from "./homepage";
 import { RegistrationForm } from "./registration_form_page";
 
 
-export class RegisteredPage extends RegistrationForm {
+export class RegisteredPage {
     constructor(){
-        super()
         this.logo = customElement('.img-responsive')
+        this.headLine = customElement('h1')
+        
+    }
+
+    checkHeadLine(headlineText) {
+        this.headLine.isVisible()
+        this.headLine.haveText(headlineText)
+        return this
     }
 
     clickLogo() {
+        this.logo.isVisible()
         this.logo.click()
         return new HomePageEshop
     }

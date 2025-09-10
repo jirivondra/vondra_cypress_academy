@@ -1,10 +1,9 @@
 import { customElement } from "../../cypress/e2e/helpers/custom_element";
-import { BasePageEshop } from "../common/base_page_eshop";
-import { HomePageEshop } from "./homepage";
+import { BasePage } from "../common/base_page";
 
-export class ShoppingBasket extends HomePageEshop{
+export class ShoppingBasket extends BasePage{
     constructor() {
-        super('index.php?route=checkout/cart')
+        super('eshop/index.php?route=checkout/cart')
         this.unitPrice = customElement(`(//table/tbody//tr[.//a[contains(text(), 'iPhone')]]/td[5])[2]`)
         this.quantity = customElement('table .input-group > input')
         this.totalPrice = customElement(`//table[@class='table table-bordered']/tbody/tr[1]/td[6]`)
@@ -12,24 +11,9 @@ export class ShoppingBasket extends HomePageEshop{
         this.detaleButton = customElement(`[data-original-title="Remove"]`)
         this.dropDownBasket = customElement('#cart > .dropdown-toggle')
         this.buttonBasket = customElement(`strong`)
-
+        this.statusMessage = customElement('#content > p')
     }
 
-    clickDropDown (){
-    this.dropDownBasket.click()
-    return this
-    }
-    clickBasketButton(buttonName) {
-    this.buttonBasket.containsClick(buttonName)
-    return this
-    }
-   openBasket(buttonName){
-    this.wait(500)
-    this.clickDropDown()
-    this.wait(500)
-    this.clickBasketButton(buttonName)
-    return this
-   }
 
    checkUnitPrice(unitPrice) {
    this.unitPrice.xpathHaveText(unitPrice)
@@ -55,5 +39,17 @@ export class ShoppingBasket extends HomePageEshop{
       cy.wait(waitingTime)
       return this
     }
+
+    checkStatus(text) {
+        this.statusMessage.haveText(text)
+        return this
+    }
    
+   checkBasket(testData) {
+       this.checkUnitPrice(testData.unitPrice);
+        this.checkQuantityValue(testData.quantity.attribute, testData.quantity.value);
+        this.checkTotalPrice(testData.unitPrice);
+        this.checkModel(testData.model)
+        return this
+   }
 }

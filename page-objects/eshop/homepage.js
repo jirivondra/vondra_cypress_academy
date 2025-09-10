@@ -1,13 +1,21 @@
 import { customElement } from "../../cypress/e2e/helpers/custom_element"
-import { RegisteredPage } from "./registered_page"
+import { BasePage } from "../common/base_page"
+import { ShoppingBasket } from "./basket_page"
 
-export class HomePageEshop extends RegisteredPage{
+export class HomePageEshop extends BasePage{
     constructor() {
-    super()
-    this.addToCards = customElement(`[onclick="cart.add('40');"]`)
+    super('/eshop')
+    this.addToCards = customElement(`//div[@class='product-thumb transition' and .//a[text()='iPhone']]//button[./span[text()='Add to Cart']]`)
+    this.alert = customElement('.alert')
     }
     addToCard() {
-    this.addToCards.click()
+    this.addToCards.xpathClick()
     return this
+   }
+
+   checkAlert(text) {
+    this.alert.isVisible()
+    this.alert.containsText(text)
+    return new ShoppingBasket()
    }
 }

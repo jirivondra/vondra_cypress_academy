@@ -51,7 +51,7 @@ export const customElement = (selector) => {
       return this;
     },
     xpathClick() {
-      cy.xpath(selector).should('be.visible').click({force: true});
+      cy.xpath(selector).click({force: true});
       return this;
     },
     containsClick(text) {
@@ -70,12 +70,12 @@ export const customElement = (selector) => {
       cy.get(selector).check(option)
       return this
     },
-    
-    get() {
+    isChecked() {
+      cy.get(selector).should("be.checked")
+    },
+    get(selector) {
       return cy.get(selector);
     },
-
-    
   };
    return element;
 };
