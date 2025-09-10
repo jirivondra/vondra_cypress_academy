@@ -11,7 +11,7 @@ export class UserApi {
     // ? Klíčové slovo return nám vrátí výsledek requestu do místa odkud pak můžeme psát expecty nebo přepoužívat data. Testovat můžeme buď pomocí další metody (například registerCheck) nebo přímo v testu.
     return cy.request({
       method: "POST",
-      url: this.apiUrl + "/user/register",
+      url: this.apiUrl + "user/register",
       body: {
         username,
         password,
@@ -23,7 +23,7 @@ export class UserApi {
   login(username, password) {
     return cy.request({
       method: "POST",
-      url: this.apiUrl + "/auth/login", 
+      url: this.apiUrl + "auth/login", 
       body: {
         username,
         password,
