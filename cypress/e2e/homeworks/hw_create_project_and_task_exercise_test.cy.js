@@ -38,9 +38,17 @@ describe('', () => {
     });
     it('', () => {
         projectsPage.clickProjectLink().clickAddProject()
-        createNewProjectModal.fillProjectForm(testData)
+        createNewProjectModal.selectPriority(testData.project.priority)
+        createNewProjectModal.selectStatus(testData.project.status)
+        createNewProjectModal.typeName(testData.project.name)
+        createNewProjectModal.selectDate(testData.project.startData)
+        createNewProjectModal.clickSave()
         tasksPage.clickAddButton()
-        createNewTaskModal.fillFormTask(testData)
+        createNewTaskModal.selectType(testData.task.type)
+        createNewTaskModal.fillName(testData.task.name)
+        createNewTaskModal.selectStatus(testData.task.status)
+        createNewTaskModal.checkAssigned(testData.task.assignedTo)
+        createNewTaskModal.clickSaveButton()
         projectsTasksPage.checkTaskInfo(testData)
         loginPage.clickLogout()
     });

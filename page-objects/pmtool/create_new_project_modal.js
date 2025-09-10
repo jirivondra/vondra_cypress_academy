@@ -30,33 +30,16 @@ export class CreateNewProjectModal {
         return this;
     }
 
-    selectDate(data) {
+    selectDate(startDate) {
         this.startData.clear()
-        this.startData.type(data)
-        this.startData.haveValue(data)
+        this.startData.click().type("{esc}" + startDate)
+        this.startData.haveValue(startDate)
         return this
     }
 
     clickSave() {
         this.saveButton.isVisible()
-        this.saveButton.click();
+        this.saveButton.click()
        return new ProjectsTasksPage()
-    }
-
-    
-    wait(time) {
-      cy.wait(time)
-      return this
-    }
-    fillProjectForm(testData) {
-        this.wait(1000)
-        this.selectPriority(testData.project.priority);
-        this.wait(500)
-        this.selectStatus(testData.project.status);
-        this.wait(500)
-        this.typeName(testData.project.name);
-        this.selectDate(testData.project.startData)
-        this.clickSave()
-        return this;
     }
 }
