@@ -15,9 +15,18 @@ export const customElement = (selector) => {
       cy.get(selector).should("have.text", text);
       return this;
     },
+    checkXpathText(text) {
+      cy.xpath(selector).should('have.text', text)
+    },
+    checkXpathContain(text) {
+      cy.xpath(selector).should('contain.text', text)
+    },
     containsText(text) {
       cy.get(selector).should("contain.text", text);
       return this;
+    },
+    xpathEmpty () {
+      cy.xpath(selector).should('be.empty')
     },
     haveValue(value) {
       cy.get(selector).should("have.value", value);
@@ -42,6 +51,15 @@ export const customElement = (selector) => {
     clear() {
       cy.get(selector).clear();
       return this;
+    },
+    selectOption(option) {
+      cy.get(selector).select(option)
+
+      return this
+    },
+    checkContains(text){
+      this.get().contains(text).click()
+      return this
     },
     get() {
       return cy.get(selector);

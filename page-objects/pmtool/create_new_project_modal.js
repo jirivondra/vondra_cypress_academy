@@ -1,20 +1,62 @@
 //import { ProjectsTasksPage } from "./projects/projects_tasks_page.js";
 
+import { customElement } from "../../cypress/e2e/helpers/custom_element";
+import { BasePage } from "../common/base_page";
+import { ProjectsTasksPage } from "./projects/project_info_page";
+
 export class CreateNewProjectModal {
-
     constructor () {
-        this.projectNameInput = '[data-testid="Name"] input';
-        this.saveButton = 'button[type="submit"]';
+        this.projectNameInput = customElement('[data-testid="Name"] input');
+        this.saveButton = customElement('button[type="submit"]');
+        this.priority = customElement('[data-testid="Priority"] > select')
+        this.startData = customElement('[data-testid="Start Date"] input')
+        this.status = customElement('[data-testid="Status"] > select')
+    }
 
+    selectPriority(priority) {
+        this.priority.selectOption(priority)
+        return this
+    }
+
+    selectStatus(status) {
+        this.status.selectOption(status)
+        return this
     }
 
     typeName(name) {
-        cy.get(this.projectNameInput).type(name);
+        this.projectNameInput.clear()
+        this.projectNameInput.type(name)
+        this.projectNameInput.haveValue(name)
         return this;
     }
 
+    selectDate(data) {
+        this.startData.clear()
+        this.startData.type(data)
+        this.startData.haveValue(data)
+        return this
+    }
+
     clickSave() {
-        cy.get(this.saveButton).click();
-       // return new ProjectsTasksPage()
+        this.saveButton.isVisible()
+        this.saveButton.click();
+       return new ProjectsTasksPage()
+    }
+
+    
+    wait(time) {
+      cy.wait(time)
+      return this
+    }
+    fillProjectForm(testData) {
+        this.wait(1000)
+        this.selectPriority(testData.project.priority);
+        this.wait(500)
+        this.selectStatus(testData.project.status);
+        this.wait(500)
+        this.typeName(testData.project.name);
+        this.selectDate(testData.project.startData)
+        this.clickSave()
+        return this;
     }
 }
