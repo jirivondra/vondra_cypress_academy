@@ -1,0 +1,60 @@
+import { TegBLoginPage } from "../../../page-objects/tegb/tegb_login_page";
+
+/*
+
+Cvičení ⌛10:00:
+Vytvořte test, který provolá registraci a následně se pomocí LoginAPI přihlásí. 
+Složka: cypress/e2e/exercises
+Test: api_exercise.cy.js
+
+Login API údaje:
+metoda: POST
+url: http://localhost:3000/auth/login
+body: 
+{
+   “username”: “uživatelské jméno”,
+   “password”: “heslo”
+}
+
+Zkontrolujte, že se vám vrátí status 201.
+
+*/
+
+import { faker } from "@faker-js/faker";
+
+describe("Exercise: sending API", () => {
+  let username;
+  let password;
+  let email;
+
+  beforeEach(() => {
+    username = faker.internet.username();
+    password = faker.internet.password();
+    email = faker.internet.email();
+  });
+  it("Register and Login to TEGB", () => {
+    cy.request({
+      method: "POST",
+      url: "http://localhost:3000/user/register",
+      body: {
+        username: username,
+        password,
+        email,
+      },
+    }).then((response) => {
+      expect(response.status).to.equal(201);
+    });
+
+    cy.request({
+      method: "POST",
+      url: "http://localhost:3000/auth/login",
+      body: {
+        username,
+        password,
+      },
+    }).then((response) => {
+      expect(response.status).to.equal(201);
+    });
+  });
+});
+
