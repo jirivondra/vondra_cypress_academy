@@ -35,6 +35,9 @@ export const customElement = (selector) => {
       cy.get(selector).click();
       return this;
     },
+    clickOption(option) {
+      cy.get(selector).click(option)
+    },
     type(value) {
       cy.get(selector).type(value);
       return this;
