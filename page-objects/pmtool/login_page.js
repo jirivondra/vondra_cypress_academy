@@ -14,6 +14,8 @@ export class LoginPage {
     this.logo = customElement(".login-page-logo img");
     this.rememberMeCheckbox = customElement(".checkbox");
     this.alertDiv = customElement(".alert");
+    this.profilButton = customElement('#user_dropdown')
+    this.logoutButton = customElement('#logout')
   }
 
   openPmtool() {
@@ -34,6 +36,17 @@ export class LoginPage {
   clickLogin() {
     this.loginButton.click();
     return new DashboardPage();
+  }
+
+  openProfile() {
+    this.profilButton.click()
+    return this
+  }
+
+  clickLogout() {
+    this.openProfile()
+    this.logoutButton.click()
+    //return this
   }
 
   login(username, password) {
