@@ -1,50 +1,63 @@
 import { customElement } from "../../../cypress/e2e/helpers/custom_element";
 import { ProjectsTasksPage } from "./project_info_page";
+import { ProjectsTaskPage } from "./projects_tasks_page";
+import { TasksPage } from "./tasks_page";
 
 export class CreateNewTaskModal {
     constructor() {
         this.type = customElement('[data-testid="Type"] > select')
+        this.selectedType = customElement('[data-testid="Type"] option:selected')
         this.name = customElement('[data-testid="Name"] input')
         this.status = customElement('[data-testid="Status"] > select')
-        this.assignedTo = customElement('[data-testid="Assigned To"]')
+        this.selectedStatus = customElement('[data-testid="Status"] option:selected')
+        this.assignedTo = customElement(`//label[contains(., 'Petr Fifka')]/div/span/input[@type='checkbox' and @value='12']`)
         this.submitButton = customElement('[type="submit"]')
     }
     selectType(type) {
         this.type.selectOption(type)
-        this.wait(500)
+        return this
+    }
+
+    checkType (type) {
+        this.selectedType.haveText(type)
         return this
     }
     fillName(name) {
-        this.name.clear()
         this.name.type(name)
+        return this
+    }
+    checkName(name) {
         this.name.haveValue(name)
         return this
     }
     selectStatus(status) {
         this.status.selectOption(status)
-        this.wait(500)
+        return this
+    }
+
+    checkStatus(status) {
+        this.selectedStatus.haveText(status)
         return this
     }
     checkAssigned(name) {
-        this.assignedTo.checkContains(name)
+        this.assignedTo.checkOption(name)
+        return this
+    }
+
+    controlCheckAssigned(checkBox) {
+        this.assignedTo.beChecked(checkBox)
+        return this
+    }
+
+    saveButtonExist() {
+        this.submitButton.isExist()
         return this
     }
 
     clickSaveButton() {
         this.submitButton.click()
-        return new ProjectsTasksPage()
+        return new ProjectsTaskPage()
     }
     
-    wait(time) {
-      cy.wait(time)
-      return this
-    }
 
-    fillFormTask(testData){
-        this.selectType(testData.task.type)
-        this.fillName(testData.task.name)
-        this.selectStatus(testData.task.status)
-        this.checkAssigned(testData.task.assignedTo)
-        this.clickSaveButton()
-    }
 }

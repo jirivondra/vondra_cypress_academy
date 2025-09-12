@@ -8,10 +8,12 @@ export class ProjectsPage extends HeaderSection {
     constructor() {
         super("module=items/items&path=21");
         this.addProjectButton = customElement('button[test_id="Add Project"]');
+        this.modalTitle = customElement('.modal-title')
     }
 
     clickAddProject() {
         this.addProjectButton.click();
+        this.modalTitle.isVisible()
         return new CreateNewProjectModal()
     }
 

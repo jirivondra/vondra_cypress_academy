@@ -4,12 +4,17 @@ import { CreateNewTaskModal } from "./create_task_modal";
 export class TasksPage {
     constructor() {
         this.addTaskButton = customElement('[test_id="Add Task"]')
+        this.modalTitle = customElement('.modal-title')
     }
 
-    clickAddButton() {
-        this.addTaskButton.isVisible()
-        this.addTaskButton.click()
-        return new CreateNewTaskModal()
+   addButtonIsVisiable() {
+    this.addTaskButton.isVisible()
+    return this
+   }
 
+    clickAddButton() {
+        this.addTaskButton.click()
+        this.modalTitle.isVisible()
+        return new CreateNewTaskModal()
     }
 }

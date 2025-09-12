@@ -1,20 +1,26 @@
 //import { ProjectsTasksPage } from "./projects/projects_tasks_page.js";
 
 import { customElement } from "../../cypress/e2e/helpers/custom_element";
-import { BasePage } from "../common/base_page";
-import { ProjectsTasksPage } from "./projects/project_info_page";
+import { TasksPage } from "./projects/tasks_page";
 
 export class CreateNewProjectModal {
     constructor () {
         this.projectNameInput = customElement('[data-testid="Name"] input');
         this.saveButton = customElement('button[type="submit"]');
         this.priority = customElement('[data-testid="Priority"] > select')
+        this.checkePriority = customElement('[data-testid="Priority"] option:selected')
         this.startData = customElement('[data-testid="Start Date"] input')
         this.status = customElement('[data-testid="Status"] > select')
+        this.checkeStatus = customElement('[data-testid="Status"] option:selected')
     }
 
     selectPriority(priority) {
         this.priority.selectOption(priority)
+        return this
+    }
+
+    checkPriority (priority) {
+        this.checkePriority.haveText(priority)
         return this
     }
 
@@ -23,23 +29,37 @@ export class CreateNewProjectModal {
         return this
     }
 
-    typeName(name) {
-        this.projectNameInput.clear()
-        this.projectNameInput.type(name)
-        this.projectNameInput.haveValue(name)
-        return this;
-    }
-
-    selectDate(startDate) {
-        this.startData.clear()
-        this.startData.click().type("{esc}" + startDate)
-        this.startData.haveValue(startDate)
+    checkStatus(status) {
+    this.checkeStatus.haveText(status)
         return this
     }
 
-    clickSave() {
-        this.saveButton.isVisible()
-        this.saveButton.click()
-       return new ProjectsTasksPage()
+    typeName(name) {
+        this.projectNameInput.type(name)
+        return this;
     }
+
+    checkName(name) {
+    this.projectNameInput.haveValue(name)
+    return this
+    }
+
+    selectDate(startDate) {
+        this.startData.click().type("{esc}" + startDate)
+        return this
+    }
+
+    checkDate(startDate) {
+    this.startData.haveValue(startDate)
+        return this
+    }
+    seveButtonIsVisiable() {
+    this.saveButton.isVisible()
+    return this 
+    }
+    clickSave() {
+    this.saveButton.click()
+    return new TasksPage()
+    }
+
 }
