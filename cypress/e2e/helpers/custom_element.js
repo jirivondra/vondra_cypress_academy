@@ -50,7 +50,6 @@ export const customElement = (selector) => {
     get() {
       return cy.get(selector);
     },
-    
   };
    return element;
 };

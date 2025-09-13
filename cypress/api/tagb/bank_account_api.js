@@ -23,4 +23,8 @@ export class BankAccount {
             }
         });
     }
+
+    creatBalanceAlias(name, alias) {
+        cy.get(name).as(alias)
+    }
 }
