@@ -1,20 +1,38 @@
 //import { ProjectsTasksPage } from "./projects/projects_tasks_page.js";
 
+import { customElement } from "../../cypress/e2e/helpers/custom_element";
+
 export class CreateNewProjectModal {
+  constructor() {
+    this.projectNameInput = customElement('[data-testid="Name"] input');
+    this.saveButton = customElement('button[type="submit"]');
+    this.prioritySelect = customElement('div[data-testid="Priority"] select');
+    this.statusSelect = customElement('div[data-testid="Status"] select');
+    this.startDateInput = customElement('div[data-testid="Start Date"] input');
+  }
 
-    constructor () {
-        this.projectNameInput = '[data-testid="Name"] input';
-        this.saveButton = 'button[type="submit"]';
+  typeName(name) {
+    this.projectNameInput.type(name);
+    return this;
+  }
 
-    }
+  clickSave() {
+    this.saveButton.click();
+    return new ProjectsTasksPage();
+  }
 
-    typeName(name) {
-        cy.get(this.projectNameInput).type(name);
-        return this;
-    }
+  selectPriority(priority) {
+    this.prioritySelect.get()
+  }
 
-    clickSave() {
-        cy.get(this.saveButton).click();
-       // return new ProjectsTasksPage()
-    }
+    selectStatus(status) {
+    this.statusSelect.get().select(status);
+    return this;
+  }
+
+    typeStartDate(startDate) {
+    // ? Klikáme a mačkáme Escape z toho důvodu, že jinak se nám zobrazí kalendář, který v automatech mění startDate po uložení
+    this.startDateInput.click().type("{esc}" + startDate);
+    return this;
+  }
 }
