@@ -5,6 +5,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    experimentalOriginDependencies: true,
         env: {
       testVar: "Toto je proměnná",
       pmtool_url: "https://tredgate.com/pmtool",
